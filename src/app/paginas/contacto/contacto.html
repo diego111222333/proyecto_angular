@@ -1,0 +1,94 @@
+ <header class="bg-dark text-white text-center py-4">
+    <h1>Contactenos</h1>
+    <p>¿Quieres comunicarte con nosotros? ¡Déjanos tu mensaje!</p>
+  </header>
+
+  <section class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <form >
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="string" class="form-control" id="nombre" [(ngModel)]="contacto.nombre" placeholder="Tu nombre" name="nombre" required>
+          </div>
+          <div class="mb-3">
+            <label for="apellido" class="form-label">Apellido</label>
+            <input type="text" class="form-control" id="apellido" [(ngModel)]="contacto.apellido" placeholder="Tu apellido" name="apellido" required>
+          </div>
+          <div class="mb-3">
+            <label for="telefono" class="form-label">telefono</label>
+            <input type="text" class="form-control" id="telefono" [(ngModel)]="contacto.telefono" placeholder="Tu telefono" name="telefono" required>
+          </div>
+          <div class="mb-3">
+            <label for="direccion" class="form-label">Dirección</label>
+            <input type="text" class="form-control" id="direccion" [(ngModel)]="contacto.direccion" placeholder="Tu direccion" name="direccion" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Correo electrónico</label>
+            <input type="email" class="form-control" id="email" [(ngModel)]="contacto.email" placeholder="nombre@ejemplo.com" name="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="sueldo" class="form-label">Sueldo</label>
+            <input type="number" min="0" max="20000" class="form-control" id="sueldo" [(ngModel)]="contacto.sueldo" placeholder="Tu sueldo" name="sueldo" required>
+          </div>
+          <div class="mb-3">
+            <label for="gasto" class="form-label">Total gasto en viajes </label>
+            <input type="number" min="0" max="20000" class="form-control" id="gasto" [(ngModel)]="contacto.gastos"  name="gastos" >
+          </div>
+          <div class="mb-3">
+            <label for="nacimento" class="form-label">Fecha de nacimento</label>
+            <input type="date" class="form-control" id="nacimento" [(ngModel)]="contacto.nacimiento" name="nacimento" required>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" [(ngModel)]="contacto.registrado" name="registrado" id="checkDefault" >
+            <label class="form-check-label" for="checkDefault">
+              Registrado
+            </label>
+          </div>
+          <div class="mb-3">
+            <label for="mensaje" class="form-label">Mensaje</label>
+            <textarea class="form-control" id="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." [(ngModel)]="contacto.mensaje" name="mensaje" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-danger text-white" (click)="registrar()">Enviar mensaje</button>
+        </form>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="table-responsive">
+      <table *ngIf="tablacontacto.length > 0" class="table table-striped table-hover table-bordered ">
+  <thead class="table-dark table-bordered border-dark">
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">Telefono</th>
+      <th scope="col">Dirección</th>
+      <th scope="col">Correo electrónico</th>
+      <th scope="col">Sueldo</th>
+      <th scope="col">Gastos en viajes</th>
+      <th scope="col">% de gastos en viajes</th>
+      <th scope="col">Fecha de registro</th>
+      <th scope="col">Año nacido</th>
+      <th scope="col">Registrado</th>
+      <th scope="col">Mensaje</th>
+    </tr>
+  </thead>
+  <tbody class="table-info table-bordered border-dark ">
+    <tr *ngFor="let c of tablacontacto; let i=index;">
+      <td>{{ c.nombre |uppercase }}</td>
+      <td>{{ c.apellido |uppercase }}</td>
+      <td>{{ c.telefono }}</td>
+      <td>{{ c.direccion  | titlecase}}</td>
+      <td>{{ c.email | lowercase}}</td>
+      <td>{{ c.sueldo | currency:'Bs' }}</td>
+      <td>{{c.gastos | currency:"Bs"}}</td>
+      <td>{{c.gastos/c.sueldo | percent}}</td>
+      <td>{{c.anio | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+      <td>{{c.nacimiento | slice:0:4}}</td>
+      <td>{{c.registrado?"Registrado":"No registrado"}}</td>
+      <td>{{ c.mensaje | json }}</td>
+    </tr>
+  </tbody>
+</table>
+    </div>
+  </section>

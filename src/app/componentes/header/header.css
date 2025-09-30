@@ -1,0 +1,36 @@
+header{
+    background-color: #333333;
+}
+.banner {
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    align-items: center;
+    height: 6rem;
+}
+.banner h1{
+    text-align: center;
+    animation-name: cambiar;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+.banner h1:hover{
+    font-size: 50px;
+    cursor: pointer;
+}
+@keyframes cambiar{
+    0%{color: red;}
+    40%{color: yellow;}
+    80%{color:rgb(11, 173, 11)}
+    100%{color: red;}
+}
+.navega a{
+    color: azure;
+}
+.dropdown-item:hover{
+    color: black !important; 
+}
+.navega{
+    background-color: #333333;
+}
